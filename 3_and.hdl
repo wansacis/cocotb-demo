@@ -1,0 +1,23 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity threeand is
+  port (
+    i1    : in  std_logic;
+    i2    : in  std_logic;
+    i3    : in  std_logic;
+    and_result : out std_logic
+    );
+end threeand;
+
+architecture rtl of threeand is
+  signal and_gate : std_logic;
+  signal and_gate2 : std_logic;
+  component twoand port(input_1:in std_logic; input_2:in std_logic; and_result: inout std_logic);
+  end component;
+
+begin
+    a1: twoand port map(i1, i2,and_gate);
+    a2: twoand port map(and_gate, i3,and_gate2);
+    and_result <= and_gate2;
+end rtl;
